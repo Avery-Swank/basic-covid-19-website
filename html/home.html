@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/style">
+    </head>
+
+    <div class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </div>
+
+    <div class="filterbar">
+        <ul>
+            <li>Select Country</li>
+            <li><select id="countryDropdown" class="form-control">
+                    <option value="World">World</option>
+                </select>
+            </li>
+
+            <li>Start Date</li>
+            <li><input type="date" id="startDate"
+                       value="2020-01-01"
+                       min="2020-01-01" max="2020-08-11">
+            </li>
+
+            <li>End Date</li>
+            <li><input type="date" id="endDate"
+                       value="2020-01-01"
+                       min="2020-01-01" max="2020-08-11">
+            </li>
+        </ul>
+    </div>
+
+    <body>
+        <h1>Main Page</h1>
+    </body>
+</html>

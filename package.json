@@ -1,0 +1,26 @@
+{
+  "name": "basic-covid-19-website",
+  "version": "1.0.0",
+  "description": "A website to display and teach app developers how to use HTML, CSS, Express, Node.js to display Covid-19 data.",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.27.0",
+    "superagent": "^6.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Avery-Swank/basic-covid-19-website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Avery-Swank/basic-covid-19-website/issues"
+  },
+  "homepage": "https://github.com/Avery-Swank/basic-covid-19-website#readme"
+}
