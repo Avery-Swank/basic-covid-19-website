@@ -20,10 +20,19 @@
 
         <h1>United States</h1>
 
-        <div class="entity" id="us_entity"></div>
-
-        <div>
-            <table id="states_entities_table"></table>
+        <div class="dropdown">
+            <button class="dropbtn">Data Display</button>
+            <div class="dropdown-content">
+                <a onclick="filterData('text')">Text</a>
+                <a onclick="filterData('graph')">Graph</a>
+                <a onclick="filterData('historical')">Historical</a>
+            </div>
         </div>
+
+        <table id="states_entities_table">
+            <tr>
+                <div class="entity" id="us_entity"></div>
+            </tr>
+        </table>
     </body>
 </html>
