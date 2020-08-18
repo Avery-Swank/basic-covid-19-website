@@ -1,6 +1,5 @@
 
-const moment = require(`moment`)
-const states = require(`./states.json`)
+const states = require(`../../data/states.json`)
 
 /**
  * @function getState

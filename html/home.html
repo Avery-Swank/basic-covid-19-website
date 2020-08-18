@@ -1,39 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
     <head>
+        <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="/style">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript" src="home.js"></script>
     </head>
 
-    <div class="navbar">
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-        </ul>
-    </div>
+    <body onload="fillTables()">
+        <div class="navbar">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </div>
 
-    <div class="filterbar">
-        <ul>
-            <li>Select Country</li>
-            <li><select id="countryDropdown" class="form-control">
-                    <option value="World">World</option>
-                </select>
-            </li>
+        <h1>United States</h1>
 
-            <li>Start Date</li>
-            <li><input type="date" id="startDate"
-                       value="2020-01-01"
-                       min="2020-01-01" max="2020-08-11">
-            </li>
+        <div class="entity" id="us_entity"></div>
 
-            <li>End Date</li>
-            <li><input type="date" id="endDate"
-                       value="2020-01-01"
-                       min="2020-01-01" max="2020-08-11">
-            </li>
-        </ul>
-    </div>
-
-    <body>
-        <h1>Main Page</h1>
+        <div>
+            <table id="states_entities_table"></table>
+        </div>
     </body>
 </html>

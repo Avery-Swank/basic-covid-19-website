@@ -44,3 +44,13 @@
   padding: 14px 16px;
   text-decoration: none;
 }
+
+/* entity style */
+.entity {
+  border: 3px solid #454545;
+  border-radius: 10px;
+}
+
+.entity_title {
+  color: #454545;
+}

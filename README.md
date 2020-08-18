@@ -2,4 +2,4 @@
 A website to display and teach app developers how to use HTML, CSS, Express, Node.js to display Covid-19 data.
 
 ## running locally
-`npm run start`
+`npm run server`

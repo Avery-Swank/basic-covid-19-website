@@ -5,13 +5,13 @@
   "main": "server.js",
   "dependencies": {
     "express": "^4.17.1",
+    "jquery": "^3.5.1",
     "moment": "^2.27.0",
     "superagent": "^6.0.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "server": "node server.js"
   },
   "repository": {
     "type": "git",
