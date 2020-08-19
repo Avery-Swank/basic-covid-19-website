@@ -15,6 +15,17 @@ router.get(`/us`, async function(req, res) {
   }
 })
 
+router.get(`/us/lastUpdated`, async function(req, res) {
+  console.log(`covidData: Get US Last Updated...`)
+
+  try{
+    const data = await covidData.getCurrentUS()
+    res.send(data.lastModified)
+  } catch (e) {
+    res.status(400).send()
+  }
+})
+
 router.get(`/us/dates`, async function(req, res) {
   console.log(`covidData: Get US starting and ending dates of historical records...`)
 
@@ -56,6 +67,17 @@ router.get(`/:state`, async function(req, res) {
     res.send(data)
   } catch (e) {
     res.status(400).send(`Invalid State: ${req.params.state}`)
+  }
+})
+
+router.get(`/:state/lastUpdated`, async function(req, res) {
+  console.log(`covidData: Get ${req.params.state} Last Updated...`)
+
+  try{
+    const data = await covidData.getCurrentState(req.params.state)
+    res.send(data.lastUpdateEt)
+  } catch (e) {
+    res.status(400).send()
   }
 })
 

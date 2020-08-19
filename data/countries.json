@@ -1,0 +1,1244 @@
+{
+    "data": [
+        {
+            "name": "Barbados",
+            "slug": "barbados",
+            "ISO2": "BB"
+        },
+        {
+            "name": "Gibraltar",
+            "slug": "gibraltar",
+            "ISO2": "GI"
+        },
+        {
+            "name": "Lithuania",
+            "slug": "lithuania",
+            "ISO2": "LT"
+        },
+        {
+            "name": "Malaysia",
+            "slug": "malaysia",
+            "ISO2": "MY"
+        },
+        {
+            "name": "Nauru",
+            "slug": "nauru",
+            "ISO2": "NR"
+        },
+        {
+            "name": "Palestinian Territory",
+            "slug": "palestine",
+            "ISO2": "PS"
+        },
+        {
+            "name": "Qatar",
+            "slug": "qatar",
+            "ISO2": "QA"
+        },
+        {
+            "name": "Solomon Islands",
+            "slug": "solomon-islands",
+            "ISO2": "SB"
+        },
+        {
+            "name": "Sri Lanka",
+            "slug": "sri-lanka",
+            "ISO2": "LK"
+        },
+        {
+            "name": "Turks and Caicos Islands",
+            "slug": "turks-and-caicos-islands",
+            "ISO2": "TC"
+        },
+        {
+            "name": "Vanuatu",
+            "slug": "vanuatu",
+            "ISO2": "VU"
+        },
+        {
+            "name": "Wallis and Futuna Islands",
+            "slug": "wallis-and-futuna-islands",
+            "ISO2": "WF"
+        },
+        {
+            "name": "Dominica",
+            "slug": "dominica",
+            "ISO2": "DM"
+        },
+        {
+            "name": "Gambia",
+            "slug": "gambia",
+            "ISO2": "GM"
+        },
+        {
+            "name": "Iran, Islamic Republic of",
+            "slug": "iran",
+            "ISO2": "IR"
+        },
+        {
+            "name": "Namibia",
+            "slug": "namibia",
+            "ISO2": "NA"
+        },
+        {
+            "name": "Tokelau",
+            "slug": "tokelau",
+            "ISO2": "TK"
+        },
+        {
+            "name": "Guinea",
+            "slug": "guinea",
+            "ISO2": "GN"
+        },
+        {
+            "name": "Morocco",
+            "slug": "morocco",
+            "ISO2": "MA"
+        },
+        {
+            "name": "Tunisia",
+            "slug": "tunisia",
+            "ISO2": "TN"
+        },
+        {
+            "name": "Azerbaijan",
+            "slug": "azerbaijan",
+            "ISO2": "AZ"
+        },
+        {
+            "name": "Honduras",
+            "slug": "honduras",
+            "ISO2": "HN"
+        },
+        {
+            "name": "Saint-Martin (French part)",
+            "slug": "saint-martin-french-part",
+            "ISO2": "MF"
+        },
+        {
+            "name": "Chad",
+            "slug": "chad",
+            "ISO2": "TD"
+        },
+        {
+            "name": "Christmas Island",
+            "slug": "christmas-island",
+            "ISO2": "CX"
+        },
+        {
+            "name": "Costa Rica",
+            "slug": "costa-rica",
+            "ISO2": "CR"
+        },
+        {
+            "name": "Bulgaria",
+            "slug": "bulgaria",
+            "ISO2": "BG"
+        },
+        {
+            "name": "Denmark",
+            "slug": "denmark",
+            "ISO2": "DK"
+        },
+        {
+            "name": "Malawi",
+            "slug": "malawi",
+            "ISO2": "MW"
+        },
+        {
+            "name": "Nepal",
+            "slug": "nepal",
+            "ISO2": "NP"
+        },
+        {
+            "name": "Switzerland",
+            "slug": "switzerland",
+            "ISO2": "CH"
+        },
+        {
+            "name": "Canada",
+            "slug": "canada",
+            "ISO2": "CA"
+        },
+        {
+            "name": "China",
+            "slug": "china",
+            "ISO2": "CN"
+        },
+        {
+            "name": "Grenada",
+            "slug": "grenada",
+            "ISO2": "GD"
+        },
+        {
+            "name": "Andorra",
+            "slug": "andorra",
+            "ISO2": "AD"
+        },
+        {
+            "name": "Belgium",
+            "slug": "belgium",
+            "ISO2": "BE"
+        },
+        {
+            "name": "Burkina Faso",
+            "slug": "burkina-faso",
+            "ISO2": "BF"
+        },
+        {
+            "name": "Cayman Islands",
+            "slug": "cayman-islands",
+            "ISO2": "KY"
+        },
+        {
+            "name": "Estonia",
+            "slug": "estonia",
+            "ISO2": "EE"
+        },
+        {
+            "name": "Jersey",
+            "slug": "jersey",
+            "ISO2": "JE"
+        },
+        {
+            "name": "Montserrat",
+            "slug": "montserrat",
+            "ISO2": "MS"
+        },
+        {
+            "name": "Oman",
+            "slug": "oman",
+            "ISO2": "OM"
+        },
+        {
+            "name": "Cameroon",
+            "slug": "cameroon",
+            "ISO2": "CM"
+        },
+        {
+            "name": "Luxembourg",
+            "slug": "luxembourg",
+            "ISO2": "LU"
+        },
+        {
+            "name": "Slovakia",
+            "slug": "slovakia",
+            "ISO2": "SK"
+        },
+        {
+            "name": "Bosnia and Herzegovina",
+            "slug": "bosnia-and-herzegovina",
+            "ISO2": "BA"
+        },
+        {
+            "name": "Moldova",
+            "slug": "moldova",
+            "ISO2": "MD"
+        },
+        {
+            "name": "Brunei Darussalam",
+            "slug": "brunei",
+            "ISO2": "BN"
+        },
+        {
+            "name": "Eritrea",
+            "slug": "eritrea",
+            "ISO2": "ER"
+        },
+        {
+            "name": "Jordan",
+            "slug": "jordan",
+            "ISO2": "JO"
+        },
+        {
+            "name": "Liberia",
+            "slug": "liberia",
+            "ISO2": "LR"
+        },
+        {
+            "name": "Portugal",
+            "slug": "portugal",
+            "ISO2": "PT"
+        },
+        {
+            "name": "Ukraine",
+            "slug": "ukraine",
+            "ISO2": "UA"
+        },
+        {
+            "name": "Indonesia",
+            "slug": "indonesia",
+            "ISO2": "ID"
+        },
+        {
+            "name": "Kenya",
+            "slug": "kenya",
+            "ISO2": "KE"
+        },
+        {
+            "name": "Georgia",
+            "slug": "georgia",
+            "ISO2": "GE"
+        },
+        {
+            "name": "Iceland",
+            "slug": "iceland",
+            "ISO2": "IS"
+        },
+        {
+            "name": "Jamaica",
+            "slug": "jamaica",
+            "ISO2": "JM"
+        },
+        {
+            "name": "Norfolk Island",
+            "slug": "norfolk-island",
+            "ISO2": "NF"
+        },
+        {
+            "name": "French Southern Territories",
+            "slug": "french-southern-territories",
+            "ISO2": "TF"
+        },
+        {
+            "name": "Guernsey",
+            "slug": "guernsey",
+            "ISO2": "GG"
+        },
+        {
+            "name": "Paraguay",
+            "slug": "paraguay",
+            "ISO2": "PY"
+        },
+        {
+            "name": "Tajikistan",
+            "slug": "tajikistan",
+            "ISO2": "TJ"
+        },
+        {
+            "name": "US Minor Outlying Islands",
+            "slug": "us-minor-outlying-islands",
+            "ISO2": "UM"
+        },
+        {
+            "name": "Uzbekistan",
+            "slug": "uzbekistan",
+            "ISO2": "UZ"
+        },
+        {
+            "name": "American Samoa",
+            "slug": "american-samoa",
+            "ISO2": "AS"
+        },
+        {
+            "name": "British Virgin Islands",
+            "slug": "british-virgin-islands",
+            "ISO2": "VG"
+        },
+        {
+            "name": "Finland",
+            "slug": "finland",
+            "ISO2": "FI"
+        },
+        {
+            "name": "Malta",
+            "slug": "malta",
+            "ISO2": "MT"
+        },
+        {
+            "name": "Botswana",
+            "slug": "botswana",
+            "ISO2": "BW"
+        },
+        {
+            "name": "Israel",
+            "slug": "israel",
+            "ISO2": "IL"
+        },
+        {
+            "name": "Saint Lucia",
+            "slug": "saint-lucia",
+            "ISO2": "LC"
+        },
+        {
+            "name": "Spain",
+            "slug": "spain",
+            "ISO2": "ES"
+        },
+        {
+            "name": "Argentina",
+            "slug": "argentina",
+            "ISO2": "AR"
+        },
+        {
+            "name": "Congo (Kinshasa)",
+            "slug": "congo-kinshasa",
+            "ISO2": "CD"
+        },
+        {
+            "name": "Réunion",
+            "slug": "réunion",
+            "ISO2": "RE"
+        },
+        {
+            "name": "Saint-Barthélemy",
+            "slug": "saint-barthélemy",
+            "ISO2": "BL"
+        },
+        {
+            "name": "Zambia",
+            "slug": "zambia",
+            "ISO2": "ZM"
+        },
+        {
+            "name": "Bahrain",
+            "slug": "bahrain",
+            "ISO2": "BH"
+        },
+        {
+            "name": "Chile",
+            "slug": "chile",
+            "ISO2": "CL"
+        },
+        {
+            "name": "Uruguay",
+            "slug": "uruguay",
+            "ISO2": "UY"
+        },
+        {
+            "name": "Yemen",
+            "slug": "yemen",
+            "ISO2": "YE"
+        },
+        {
+            "name": "Austria",
+            "slug": "austria",
+            "ISO2": "AT"
+        },
+        {
+            "name": "Bangladesh",
+            "slug": "bangladesh",
+            "ISO2": "BD"
+        },
+        {
+            "name": "Italy",
+            "slug": "italy",
+            "ISO2": "IT"
+        },
+        {
+            "name": "Micronesia, Federated States of",
+            "slug": "micronesia",
+            "ISO2": "FM"
+        },
+        {
+            "name": "Puerto Rico",
+            "slug": "puerto-rico",
+            "ISO2": "PR"
+        },
+        {
+            "name": "Tuvalu",
+            "slug": "tuvalu",
+            "ISO2": "TV"
+        },
+        {
+            "name": "ALA Aland Islands",
+            "slug": "ala-aland-islands",
+            "ISO2": "AX"
+        },
+        {
+            "name": "Afghanistan",
+            "slug": "afghanistan",
+            "ISO2": "AF"
+        },
+        {
+            "name": "Cambodia",
+            "slug": "cambodia",
+            "ISO2": "KH"
+        },
+        {
+            "name": "Sao Tome and Principe",
+            "slug": "sao-tome-and-principe",
+            "ISO2": "ST"
+        },
+        {
+            "name": "Korea (North)",
+            "slug": "korea-north",
+            "ISO2": "KP"
+        },
+        {
+            "name": "New Zealand",
+            "slug": "new-zealand",
+            "ISO2": "NZ"
+        },
+        {
+            "name": "Turkey",
+            "slug": "turkey",
+            "ISO2": "TR"
+        },
+        {
+            "name": "Greenland",
+            "slug": "greenland",
+            "ISO2": "GL"
+        },
+        {
+            "name": "Hungary",
+            "slug": "hungary",
+            "ISO2": "HU"
+        },
+        {
+            "name": "Australia",
+            "slug": "australia",
+            "ISO2": "AU"
+        },
+        {
+            "name": "India",
+            "slug": "india",
+            "ISO2": "IN"
+        },
+        {
+            "name": "San Marino",
+            "slug": "san-marino",
+            "ISO2": "SM"
+        },
+        {
+            "name": "United Kingdom",
+            "slug": "united-kingdom",
+            "ISO2": "GB"
+        },
+        {
+            "name": "Comoros",
+            "slug": "comoros",
+            "ISO2": "KM"
+        },
+        {
+            "name": "Mauritania",
+            "slug": "mauritania",
+            "ISO2": "MR"
+        },
+        {
+            "name": "Benin",
+            "slug": "benin",
+            "ISO2": "BJ"
+        },
+        {
+            "name": "Côte d'Ivoire",
+            "slug": "cote-divoire",
+            "ISO2": "CI"
+        },
+        {
+            "name": "Guadeloupe",
+            "slug": "guadeloupe",
+            "ISO2": "GP"
+        },
+        {
+            "name": "Heard and Mcdonald Islands",
+            "slug": "heard-and-mcdonald-islands",
+            "ISO2": "HM"
+        },
+        {
+            "name": "Kiribati",
+            "slug": "kiribati",
+            "ISO2": "KI"
+        },
+        {
+            "name": "Mali",
+            "slug": "mali",
+            "ISO2": "ML"
+        },
+        {
+            "name": "Northern Mariana Islands",
+            "slug": "northern-mariana-islands",
+            "ISO2": "MP"
+        },
+        {
+            "name": "Palau",
+            "slug": "palau",
+            "ISO2": "PW"
+        },
+        {
+            "name": "Myanmar",
+            "slug": "myanmar",
+            "ISO2": "MM"
+        },
+        {
+            "name": "Somalia",
+            "slug": "somalia",
+            "ISO2": "SO"
+        },
+        {
+            "name": "Trinidad and Tobago",
+            "slug": "trinidad-and-tobago",
+            "ISO2": "TT"
+        },
+        {
+            "name": "Turkmenistan",
+            "slug": "turkmenistan",
+            "ISO2": "TM"
+        },
+        {
+            "name": "French Guiana",
+            "slug": "french-guiana",
+            "ISO2": "GF"
+        },
+        {
+            "name": "Lao PDR",
+            "slug": "lao-pdr",
+            "ISO2": "LA"
+        },
+        {
+            "name": "United Arab Emirates",
+            "slug": "united-arab-emirates",
+            "ISO2": "AE"
+        },
+        {
+            "name": "Albania",
+            "slug": "albania",
+            "ISO2": "AL"
+        },
+        {
+            "name": "Ireland",
+            "slug": "ireland",
+            "ISO2": "IE"
+        },
+        {
+            "name": "Burundi",
+            "slug": "burundi",
+            "ISO2": "BI"
+        },
+        {
+            "name": "Cape Verde",
+            "slug": "cape-verde",
+            "ISO2": "CV"
+        },
+        {
+            "name": "Greece",
+            "slug": "greece",
+            "ISO2": "GR"
+        },
+        {
+            "name": "Guam",
+            "slug": "guam",
+            "ISO2": "GU"
+        },
+        {
+            "name": "Guatemala",
+            "slug": "guatemala",
+            "ISO2": "GT"
+        },
+        {
+            "name": "Korea (South)",
+            "slug": "korea-south",
+            "ISO2": "KR"
+        },
+        {
+            "name": "Niger",
+            "slug": "niger",
+            "ISO2": "NE"
+        },
+        {
+            "name": "Panama",
+            "slug": "panama",
+            "ISO2": "PA"
+        },
+        {
+            "name": "Saint Helena",
+            "slug": "saint-helena",
+            "ISO2": "SH"
+        },
+        {
+            "name": "Viet Nam",
+            "slug": "vietnam",
+            "ISO2": "VN"
+        },
+        {
+            "name": "Saint Kitts and Nevis",
+            "slug": "saint-kitts-and-nevis",
+            "ISO2": "KN"
+        },
+        {
+            "name": "Seychelles",
+            "slug": "seychelles",
+            "ISO2": "SC"
+        },
+        {
+            "name": "Timor-Leste",
+            "slug": "timor-leste",
+            "ISO2": "TL"
+        },
+        {
+            "name": "Bouvet Island",
+            "slug": "bouvet-island",
+            "ISO2": "BV"
+        },
+        {
+            "name": "El Salvador",
+            "slug": "el-salvador",
+            "ISO2": "SV"
+        },
+        {
+            "name": "Russian Federation",
+            "slug": "russia",
+            "ISO2": "RU"
+        },
+        {
+            "name": "Slovenia",
+            "slug": "slovenia",
+            "ISO2": "SI"
+        },
+        {
+            "name": "French Polynesia",
+            "slug": "french-polynesia",
+            "ISO2": "PF"
+        },
+        {
+            "name": "Hong Kong, SAR China",
+            "slug": "hong-kong-sar-china",
+            "ISO2": "HK"
+        },
+        {
+            "name": "Madagascar",
+            "slug": "madagascar",
+            "ISO2": "MG"
+        },
+        {
+            "name": "Nigeria",
+            "slug": "nigeria",
+            "ISO2": "NG"
+        },
+        {
+            "name": "Samoa",
+            "slug": "samoa",
+            "ISO2": "WS"
+        },
+        {
+            "name": "British Indian Ocean Territory",
+            "slug": "british-indian-ocean-territory",
+            "ISO2": "IO"
+        },
+        {
+            "name": "Equatorial Guinea",
+            "slug": "equatorial-guinea",
+            "ISO2": "GQ"
+        },
+        {
+            "name": "Holy See (Vatican City State)",
+            "slug": "holy-see-vatican-city-state",
+            "ISO2": "VA"
+        },
+        {
+            "name": "Rwanda",
+            "slug": "rwanda",
+            "ISO2": "RW"
+        },
+        {
+            "name": "Saint Vincent and Grenadines",
+            "slug": "saint-vincent-and-the-grenadines",
+            "ISO2": "VC"
+        },
+        {
+            "name": "Virgin Islands, US",
+            "slug": "virgin-islands",
+            "ISO2": "VI"
+        },
+        {
+            "name": "Congo (Brazzaville)",
+            "slug": "congo-brazzaville",
+            "ISO2": "CG"
+        },
+        {
+            "name": "Guyana",
+            "slug": "guyana",
+            "ISO2": "GY"
+        },
+        {
+            "name": "Haiti",
+            "slug": "haiti",
+            "ISO2": "HT"
+        },
+        {
+            "name": "Marshall Islands",
+            "slug": "marshall-islands",
+            "ISO2": "MH"
+        },
+        {
+            "name": "Singapore",
+            "slug": "singapore",
+            "ISO2": "SG"
+        },
+        {
+            "name": "Bhutan",
+            "slug": "bhutan",
+            "ISO2": "BT"
+        },
+        {
+            "name": "Ghana",
+            "slug": "ghana",
+            "ISO2": "GH"
+        },
+        {
+            "name": "Mozambique",
+            "slug": "mozambique",
+            "ISO2": "MZ"
+        },
+        {
+            "name": "Antigua and Barbuda",
+            "slug": "antigua-and-barbuda",
+            "ISO2": "AG"
+        },
+        {
+            "name": "Cocos (Keeling) Islands",
+            "slug": "cocos-keeling-islands",
+            "ISO2": "CC"
+        },
+        {
+            "name": "Cyprus",
+            "slug": "cyprus",
+            "ISO2": "CY"
+        },
+        {
+            "name": "Latvia",
+            "slug": "latvia",
+            "ISO2": "LV"
+        },
+        {
+            "name": "Lebanon",
+            "slug": "lebanon",
+            "ISO2": "LB"
+        },
+        {
+            "name": "Cook Islands",
+            "slug": "cook-islands",
+            "ISO2": "CK"
+        },
+        {
+            "name": "Isle of Man",
+            "slug": "isle-of-man",
+            "ISO2": "IM"
+        },
+        {
+            "name": "Libya",
+            "slug": "libya",
+            "ISO2": "LY"
+        },
+        {
+            "name": "Netherlands",
+            "slug": "netherlands",
+            "ISO2": "NL"
+        },
+        {
+            "name": "New Caledonia",
+            "slug": "new-caledonia",
+            "ISO2": "NC"
+        },
+        {
+            "name": "Niue",
+            "slug": "niue",
+            "ISO2": "NU"
+        },
+        {
+            "name": "Thailand",
+            "slug": "thailand",
+            "ISO2": "TH"
+        },
+        {
+            "name": "Egypt",
+            "slug": "egypt",
+            "ISO2": "EG"
+        },
+        {
+            "name": "Faroe Islands",
+            "slug": "faroe-islands",
+            "ISO2": "FO"
+        },
+        {
+            "name": "South Georgia and the South Sandwich Islands",
+            "slug": "south-georgia-and-the-south-sandwich-islands",
+            "ISO2": "GS"
+        },
+        {
+            "name": "Algeria",
+            "slug": "algeria",
+            "ISO2": "DZ"
+        },
+        {
+            "name": "Brazil",
+            "slug": "brazil",
+            "ISO2": "BR"
+        },
+        {
+            "name": "Central African Republic",
+            "slug": "central-african-republic",
+            "ISO2": "CF"
+        },
+        {
+            "name": "Czech Republic",
+            "slug": "czech-republic",
+            "ISO2": "CZ"
+        },
+        {
+            "name": "Ecuador",
+            "slug": "ecuador",
+            "ISO2": "EC"
+        },
+        {
+            "name": "Gabon",
+            "slug": "gabon",
+            "ISO2": "GA"
+        },
+        {
+            "name": "Zimbabwe",
+            "slug": "zimbabwe",
+            "ISO2": "ZW"
+        },
+        {
+            "name": "Peru",
+            "slug": "peru",
+            "ISO2": "PE"
+        },
+        {
+            "name": "Saint Pierre and Miquelon",
+            "slug": "saint-pierre-and-miquelon",
+            "ISO2": "PM"
+        },
+        {
+            "name": "Republic of Kosovo",
+            "slug": "kosovo",
+            "ISO2": "XK"
+        },
+        {
+            "name": "Tonga",
+            "slug": "tonga",
+            "ISO2": "TO"
+        },
+        {
+            "name": "South Sudan",
+            "slug": "south-sudan",
+            "ISO2": "SS"
+        },
+        {
+            "name": "Colombia",
+            "slug": "colombia",
+            "ISO2": "CO"
+        },
+        {
+            "name": "Germany",
+            "slug": "germany",
+            "ISO2": "DE"
+        },
+        {
+            "name": "Lesotho",
+            "slug": "lesotho",
+            "ISO2": "LS"
+        },
+        {
+            "name": "Falkland Islands (Malvinas)",
+            "slug": "falkland-islands-malvinas",
+            "ISO2": "FK"
+        },
+        {
+            "name": "Saudi Arabia",
+            "slug": "saudi-arabia",
+            "ISO2": "SA"
+        },
+        {
+            "name": "Aruba",
+            "slug": "aruba",
+            "ISO2": "AW"
+        },
+        {
+            "name": "Swaziland",
+            "slug": "swaziland",
+            "ISO2": "SZ"
+        },
+        {
+            "name": "United States of America",
+            "slug": "united-states",
+            "ISO2": "US"
+        },
+        {
+            "name": "Antarctica",
+            "slug": "antarctica",
+            "ISO2": "AQ"
+        },
+        {
+            "name": "Cuba",
+            "slug": "cuba",
+            "ISO2": "CU"
+        },
+        {
+            "name": "Monaco",
+            "slug": "monaco",
+            "ISO2": "MC"
+        },
+        {
+            "name": "Serbia",
+            "slug": "serbia",
+            "ISO2": "RS"
+        },
+        {
+            "name": "Anguilla",
+            "slug": "anguilla",
+            "ISO2": "AI"
+        },
+        {
+            "name": "Maldives",
+            "slug": "maldives",
+            "ISO2": "MV"
+        },
+        {
+            "name": "Romania",
+            "slug": "romania",
+            "ISO2": "RO"
+        },
+        {
+            "name": "Uganda",
+            "slug": "uganda",
+            "ISO2": "UG"
+        },
+        {
+            "name": "Japan",
+            "slug": "japan",
+            "ISO2": "JP"
+        },
+        {
+            "name": "Belarus",
+            "slug": "belarus",
+            "ISO2": "BY"
+        },
+        {
+            "name": "France",
+            "slug": "france",
+            "ISO2": "FR"
+        },
+        {
+            "name": "Western Sahara",
+            "slug": "western-sahara",
+            "ISO2": "EH"
+        },
+        {
+            "name": "Iraq",
+            "slug": "iraq",
+            "ISO2": "IQ"
+        },
+        {
+            "name": "Norway",
+            "slug": "norway",
+            "ISO2": "NO"
+        },
+        {
+            "name": "Philippines",
+            "slug": "philippines",
+            "ISO2": "PH"
+        },
+        {
+            "name": "Bahamas",
+            "slug": "bahamas",
+            "ISO2": "BS"
+        },
+        {
+            "name": "Dominican Republic",
+            "slug": "dominican-republic",
+            "ISO2": "DO"
+        },
+        {
+            "name": "Macao, SAR China",
+            "slug": "macao-sar-china",
+            "ISO2": "MO"
+        },
+        {
+            "name": "Bermuda",
+            "slug": "bermuda",
+            "ISO2": "BM"
+        },
+        {
+            "name": "Pakistan",
+            "slug": "pakistan",
+            "ISO2": "PK"
+        },
+        {
+            "name": "Pitcairn",
+            "slug": "pitcairn",
+            "ISO2": "PN"
+        },
+        {
+            "name": "Tanzania, United Republic of",
+            "slug": "tanzania",
+            "ISO2": "TZ"
+        },
+        {
+            "name": "Bolivia",
+            "slug": "bolivia",
+            "ISO2": "BO"
+        },
+        {
+            "name": "Kazakhstan",
+            "slug": "kazakhstan",
+            "ISO2": "KZ"
+        },
+        {
+            "name": "Kyrgyzstan",
+            "slug": "kyrgyzstan",
+            "ISO2": "KG"
+        },
+        {
+            "name": "Taiwan, Republic of China",
+            "slug": "taiwan",
+            "ISO2": "TW"
+        },
+        {
+            "name": "Armenia",
+            "slug": "armenia",
+            "ISO2": "AM"
+        },
+        {
+            "name": "Svalbard and Jan Mayen Islands",
+            "slug": "svalbard-and-jan-mayen-islands",
+            "ISO2": "SJ"
+        },
+        {
+            "name": "Sweden",
+            "slug": "sweden",
+            "ISO2": "SE"
+        },
+        {
+            "name": "Togo",
+            "slug": "togo",
+            "ISO2": "TG"
+        },
+        {
+            "name": "Fiji",
+            "slug": "fiji",
+            "ISO2": "FJ"
+        },
+        {
+            "name": "Martinique",
+            "slug": "martinique",
+            "ISO2": "MQ"
+        },
+        {
+            "name": "Montenegro",
+            "slug": "montenegro",
+            "ISO2": "ME"
+        },
+        {
+            "name": "Suriname",
+            "slug": "suriname",
+            "ISO2": "SR"
+        },
+        {
+            "name": "Venezuela (Bolivarian Republic)",
+            "slug": "venezuela",
+            "ISO2": "VE"
+        },
+        {
+            "name": "Angola",
+            "slug": "angola",
+            "ISO2": "AO"
+        },
+        {
+            "name": "Macedonia, Republic of",
+            "slug": "macedonia",
+            "ISO2": "MK"
+        },
+        {
+            "name": "Mauritius",
+            "slug": "mauritius",
+            "ISO2": "MU"
+        },
+        {
+            "name": "Mayotte",
+            "slug": "mayotte",
+            "ISO2": "YT"
+        },
+        {
+            "name": "Senegal",
+            "slug": "senegal",
+            "ISO2": "SN"
+        },
+        {
+            "name": "South Africa",
+            "slug": "south-africa",
+            "ISO2": "ZA"
+        },
+        {
+            "name": "Syrian Arab Republic (Syria)",
+            "slug": "syria",
+            "ISO2": "SY"
+        },
+        {
+            "name": "Liechtenstein",
+            "slug": "liechtenstein",
+            "ISO2": "LI"
+        },
+        {
+            "name": "Netherlands Antilles",
+            "slug": "netherlands-antilles",
+            "ISO2": "AN"
+        },
+        {
+            "name": "Croatia",
+            "slug": "croatia",
+            "ISO2": "HR"
+        },
+        {
+            "name": "Djibouti",
+            "slug": "djibouti",
+            "ISO2": "DJ"
+        },
+        {
+            "name": "Mexico",
+            "slug": "mexico",
+            "ISO2": "MX"
+        },
+        {
+            "name": "Belize",
+            "slug": "belize",
+            "ISO2": "BZ"
+        },
+        {
+            "name": "Guinea-Bissau",
+            "slug": "guinea-bissau",
+            "ISO2": "GW"
+        },
+        {
+            "name": "Mongolia",
+            "slug": "mongolia",
+            "ISO2": "MN"
+        },
+        {
+            "name": "Poland",
+            "slug": "poland",
+            "ISO2": "PL"
+        },
+        {
+            "name": "Ethiopia",
+            "slug": "ethiopia",
+            "ISO2": "ET"
+        },
+        {
+            "name": "Kuwait",
+            "slug": "kuwait",
+            "ISO2": "KW"
+        },
+        {
+            "name": "Nicaragua",
+            "slug": "nicaragua",
+            "ISO2": "NI"
+        },
+        {
+            "name": "Papua New Guinea",
+            "slug": "papua-new-guinea",
+            "ISO2": "PG"
+        },
+        {
+            "name": "Sierra Leone",
+            "slug": "sierra-leone",
+            "ISO2": "SL"
+        },
+        {
+            "name": "Sudan",
+            "slug": "sudan",
+            "ISO2": "SD"
+        }
+    ]
+}

@@ -13,4 +13,15 @@ router.get(`/states`, async function(req, res) {
   }
 })
 
+router.get(`/countries`, async function(req, res) {
+  console.log(`data: Get Countires Basic Information...`)
+
+  try{
+    const data = require(`../data/countries.json`)
+    res.send(data)
+  } catch (e) {
+    res.status(400).send()
+  }
+})
+
 module.exports = router

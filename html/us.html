@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="/style">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript" src="us.js"></script>
+    </head>
+
+    <body onload="fillTables()">
+        <div class="navbar">
+            <ul>
+                <li><a href="/">World</a></li>
+                <li><a href="/us">United States</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </div>
+
+        <h1 class="title">COVID-19: United States</h1>
+
+        <div class="filters">
+            <table class="filters_chips">
+                <tr>
+                    <td>
+                        <h3 class="filters_title">Filters: </h3>
+                    </td>
+                    <td>
+                        <label for="checkbox_text">Show Text </label>
+                        <input type="checkbox" id="checkbox_text" value="text" onclick="filterData('text', this)" checked>
+                    </td>
+                    <td>
+                        <label for="checkbox_graph">Show Graphs </label>
+                        <input type="checkbox" id="checkbox_graph" value="graph" onclick="filterData('graph', this)">
+                    </td>
+                    <td>
+                        <label for="checkbox_historical">Show Historical Trends </label>
+                        <input type="checkbox" id="checkbox_historical" value="historical" onclick="filterData('historical', this)">
+                    </td>
+                </tr>
+            </table>
+        </div><br>
+
+        <table class="entities_table" id="states_entities_table">
+            <tr>
+                <div class="entity" id="us_entity"></div>
+            </tr>
+        </table>
+    </body>
+</html>
