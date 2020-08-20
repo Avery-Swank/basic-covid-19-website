@@ -9,7 +9,7 @@ router.get(`/us`, async function(req, res) {
 
   try{
     const data = await covidData.getCurrentUS()
-    res.send(data)
+    res.send(data[0])
   } catch (e) {
     res.status(400).send()
   }
@@ -26,8 +26,19 @@ router.get(`/us/lastUpdated`, async function(req, res) {
   }
 })
 
+router.get(`/us/daily`, async function(req, res) {
+  console.log(`covidData: Get US historical records...`)
+
+  try{
+    const data = await covidData.getDailyUS()
+    res.send(data)
+  } catch (e) {
+    res.status(400).send()
+  }
+})
+
 router.get(`/us/dates`, async function(req, res) {
-  console.log(`covidData: Get US starting and ending dates of historical records...`)
+  console.log(`covidData: Get US historical records starting and ending dates...`)
 
   try{
     const data = await covidData.getUSDates()
@@ -81,8 +92,19 @@ router.get(`/:state/lastUpdated`, async function(req, res) {
   }
 })
 
+router.get(`/:state/daily`, async function(req, res) {
+  console.log(`covidData: Get ${req.params.state} State historical records...`)
+
+  try{
+    const data = await covidData.getDailyState(req.params.state)
+    res.send(data)
+  } catch (e) {
+    res.status(400).send(`Invalid State: ${req.params.state}`)
+  }
+})
+
 router.get(`/:state/dates`, async function(req, res) {
-  console.log(`covidData: Get ${req.params.state} State starting and ending dates of historical records...`)
+  console.log(`covidData: Get ${req.params.state} State historical records starting and ending dates of...`)
 
   try{
     const data = await covidData.getStateDates(req.params.state)

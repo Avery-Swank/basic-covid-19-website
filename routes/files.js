@@ -19,8 +19,8 @@ router.get('/style', function(req, res) {
   res.sendFile(path.join(__dirname, '../html', 'website.css'))
 })
 
-router.get('/us.js', function(req, res) {
-  res.sendFile(path.join(__dirname, '../html', 'us.js'))
+router.get('/website.js', function(req, res) {
+  res.sendFile(path.join(__dirname, '../html', 'website.js'))
 })
 
 router.get('/states.json', function(req, res) {

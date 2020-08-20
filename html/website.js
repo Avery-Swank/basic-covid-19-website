@@ -1,29 +1,4 @@
 
-const usTableId = `usTable`
-const stateTableId = `states_entities_table`
-
-// Google Charts graph options consistent across the page
-const piechart_options = {
-  width: 400,
-  height: 240,
-  pieHole: 0.7,
-  legend: `none`,
-  backgroundColor: `#222222`,
-  pieSliceText: `none`,
-}
-
-const trends_options = {
-  width: 300,
-  height: 180,
-  legend: `none`,
-  backgroundColor: `#222222`,
-  hAxis: {
-    ticks: [new Date(2014, 0), new Date(2014, 1), new Date(2014, 2), new Date(2014, 3),
-            new Date(2014, 4),  new Date(2014, 5), new Date(2014, 6), new Date(2014, 7),
-            new Date(2014, 8), new Date(2014, 9), new Date(2014, 10), new Date(2014, 11)]
-  }
-}
-
 // Google Charts graph colors for consistency
 const color_positive = `#e60000`
 const color_negative = `#00fe00`
@@ -35,25 +10,52 @@ const color_hospitalized = `#dedeff`
 const color_icu = `#ffffd4`
 const color_ventilator = `#fdd3d4`
 
+// Google Charts piechart options consistent across entities
+const piechart_options = {
+  width: 400,
+  height: 240,
+  pieHole: 0.7,
+  legend: `none`,
+  backgroundColor: `#222222`,
+  pieSliceText: `none`,
+}
+
+// Google Charts line chart trend options consistent across entities
+const num_horizontal_ticks = 5
+const horizontal_axis_dates = [new Date(2020, 2), new Date(2020, 5), new Date(2020, 8)]
+const trends_options = {
+  width: 400,
+  height: 240,
+  legend: `none`,
+  backgroundColor: `#222222`,
+  hAxis: {
+    ticks: horizontal_axis_dates
+  },
+  vAxis: {}
+}
+
+const stateTableId = `states_entities_table`
+
 /**
  * @function fillTables
  * @description
  *   Initial onload to fill the page with Covid Data
  */
 const fillTables = async () => {
-    const us = await $.get(`/covidData/us`)
+    const usData = await $.get(`/covidData/us`)
+    const usDailyData = await $.get(`/covidData/us/daily`)
+
     const states = await $.get(`/covidData/states`)
     const statesInfo = await $.get(`/data/states`)
 
     // Create United States entity
-    const usData = us[0]
     createEntity(`us_entity`, `United States`, usData.lastModified.substring(0, 10))
     createTexts(`us_entity`, usData)
     createGraphs(`us_entity`, usData)
-    createTrends(`us_entity`, usData)
+    createTrends(`us_entity`, usDailyData)
 
-    // Create each indiviaul state's entity
-    const statesTable = document.getElementById(stateTableId)
+    // Create each indiviaul state's entity and text
+    /*const statesTable = document.getElementById(stateTableId)
     for(var i = states.length-1; i >= 0; i--) {
       const stateData = states[i]
       var stateName
@@ -78,9 +80,53 @@ const fillTables = async () => {
 
       createEntity(stateEntity.id, stateName, stateData.dateModified.substring(0, 10))
       createTexts(stateEntity.id, stateData)
-      createGraphs(stateEntity.id, stateData)
-      createTrends(stateEntity.id, stateData)
     }
+
+    // Because it takes a lot longer to generate graphs and trends
+    // do this after generating a descent amount of information
+    for(var i = states.length-1; i >= 0; i--) {
+      const stateData = states[i]
+      var stateName
+      var stateAbbr
+
+      for(const stateInfo of statesInfo.data) {
+        if(stateInfo.abbreviation === states[i].state) {
+          stateName = stateInfo.name
+          stateAbbr = stateInfo.abbreviation
+        }
+      }
+
+      const stateDailyData = await $.get(`/covidData/${stateAbbr}/daily`)
+
+      createGraphs(`${stateAbbr}_entity`, stateData)
+      createTrends(`${stateAbbr}_entity`, stateDailyData)
+    }*/
+}
+
+/**
+ * @function filterData
+ * @description
+ *   Hide/Show only the selected data display types: text, graph, historical
+ */
+function filterData(filter, checkbox) {
+  const textTables = document.getElementsByClassName(`entity_text_table`)
+  const graphTables = document.getElementsByClassName(`entity_graph_table`)
+  const historicalTables = document.getElementsByClassName(`entity_trend_table`)
+
+  switch(filter) {
+    case 'text':
+      for(const textTable of textTables)
+        textTable.hidden = !checkbox.checked
+    break
+    case 'graph':
+      for(const graphTable of graphTables)
+        graphTable.hidden = !checkbox.checked
+    break
+    case 'historical':
+      for(const historicalTable of historicalTables)
+        historicalTable.hidden = !checkbox.checked
+    break
+  }
 }
 
 /**
@@ -221,15 +267,15 @@ function createTrends(entityId, data) {
 
   const mortalityCell = row.insertCell(1)
   mortalityCell.id = entityId + `_trend_mortality`
-  //createMortalityGraph(mortalityCell.id, data)
+  createMortalityTrend(mortalityCell.id, data)
 
   const testingCell = row.insertCell(2)
   testingCell.id = entityId + `_trend_testing`
-  //createTestingGraph(testingCell.id, data)
+  createTestingTrend(testingCell.id, data)
 
   const hospitalCell = row.insertCell(3)
   hospitalCell.id = entityId + `_trend_hospital`
-  //createHospitalGraph(hospitalCell.id, data)
+  createHospitalTrend(hospitalCell.id, data)
 }
 
 /**
@@ -338,25 +384,44 @@ function createHospitalGraph(elementId, data) {
 /**
  * @function createCasesTrend
  * @description
- *   Create a line chart trend with positive and negative data
+ *   Create a line chart trend with 'positive' and 'negative' data
  */
-function createCasesTrend(elementId, data) {
-  google.charts.load('current', {'packages': ['corechart']})
+function createCasesTrend(elementId, dailyData) {
+  google.charts.load('current', {'packages': ['line', 'corechart']})
   google.charts.setOnLoadCallback(drawChart)
 
   function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-      ['Month', 'Sales', 'Expenses'],
-      ['Feb',  1000,      400],
-      ['Mar',  1170,      460],
-      ['Apr',  660,       1120],
-      ['May',  1030,      540],
-      ['Jun',  1030,      540],
-      ['Jul',  1030,      540],
-      ['Aug',  1030,      540]
-    ])
+    const data = new google.visualization.DataTable()
+    data.addColumn('date', 'Day');
+    data.addColumn('number', `Positive`);
+    data.addColumn('number', `Negative`)
 
+    const rows = []
+    var max_value = -1
+    for(var i = dailyData.length - 1; i--; i >= 0) {
+      const year = dailyData[i].date.toString().substring(0, 4)
+      const month = dailyData[i].date.toString().substring(4, 6)
+      const day = dailyData[i].date.toString().substring(6, 8)
+
+      if(dailyData[i].positive > max_value)
+        max_value = dailyData[i].positive
+      
+      if(dailyData[i].negative > max_value)
+        max_value = dailyData[i].negative
+
+      rows.push([new Date(year, month, day), dailyData[i].positive, dailyData[i].negative])
+    }
+
+    const ticks = []
+    const tick_spacing = (max_value * 1.1) / num_horizontal_ticks
+    for(var i = 0; i <= num_horizontal_ticks; i++) {
+      ticks.push(tick_spacing * i)
+    }
+
+    data.addRows(rows)
     var options = trends_options
+    options.vAxis.ticks = ticks
+    options.colors = [color_positive, color_negative]
 
     var chart = new google.visualization.LineChart(document.getElementById(elementId))
     chart.draw(data, options)
@@ -364,28 +429,147 @@ function createCasesTrend(elementId, data) {
 }
 
 /**
- * @function filterData
+ * @function createMortalityTrend
  * @description
- *   Hide/Show only the selected data display types: text, graph, historical
+ *   Create a line chart trend with 'death' and 'recovered' data
  */
-function filterData(filter, checkbox) {
-  const textTables = document.getElementsByClassName(`entity_text_table`)
-  const graphTables = document.getElementsByClassName(`entity_graph_table`)
-  const historicalTables = document.getElementsByClassName(`entity_trend_table`)
+function createMortalityTrend(elementId, dailyData) {
+  google.charts.load('current', {'packages': ['line', 'corechart']})
+  google.charts.setOnLoadCallback(drawChart)
 
-  switch(filter) {
-    case 'text':
-      for(const textTable of textTables)
-        textTable.hidden = !checkbox.checked
-    break
-    case 'graph':
-      for(const graphTable of graphTables)
-        graphTable.hidden = !checkbox.checked
-    break
-    case 'historical':
-      for(const historicalTable of historicalTables)
-        historicalTable.hidden = !checkbox.checked
-    break
+  function drawChart() {
+    const data = new google.visualization.DataTable()
+    data.addColumn('date', 'Day');
+    data.addColumn('number', `Deaths`);
+    data.addColumn('number', `Recovered`)
+
+    const rows = []
+    var max_value = -1
+    for(var i = dailyData.length - 1; i--; i >= 0) {
+      const year = dailyData[i].date.toString().substring(0, 4)
+      const month = dailyData[i].date.toString().substring(4, 6)
+      const day = dailyData[i].date.toString().substring(6, 8)
+
+      if(dailyData[i].death > max_value)
+        max_value = dailyData[i].death
+      
+      if(dailyData[i].recovered > max_value)
+        max_value = dailyData[i].recovered
+
+      rows.push([new Date(year, month, day), dailyData[i].death, dailyData[i].recovered])
+    }
+
+    const ticks = []
+    const tick_spacing = (max_value * 1.1) / num_horizontal_ticks
+    for(var i = 0; i <= num_horizontal_ticks; i++) {
+      ticks.push(tick_spacing * i)
+    }
+
+    data.addRows(rows)
+    var options = trends_options
+    options.vAxis.ticks = ticks
+    options.colors = [color_death, color_recovered]
+
+    var chart = new google.visualization.LineChart(document.getElementById(elementId))
+    chart.draw(data, options)
+  }
+}
+
+/**
+ * @function createTestingTrend
+ * @description
+ *   Create a line chart trend with 'totalTests' and 'pending' data
+ */
+function createTestingTrend(elementId, dailyData) {
+  google.charts.load('current', {'packages': ['line', 'corechart']})
+  google.charts.setOnLoadCallback(drawChart)
+
+  function drawChart() {
+    const data = new google.visualization.DataTable()
+    data.addColumn('date', 'Day');
+    data.addColumn('number', `Tests Performed`);
+    data.addColumn('number', `Pending`)
+
+    const rows = []
+    var max_value = -1
+    for(var i = dailyData.length - 1; i--; i >= 0) {
+      const year = dailyData[i].date.toString().substring(0, 4)
+      const month = dailyData[i].date.toString().substring(4, 6)
+      const day = dailyData[i].date.toString().substring(6, 8)
+
+      if(dailyData[i].totalTestResults > max_value)
+        max_value = dailyData[i].totalTestResults
+      
+      if(dailyData[i].pending > max_value)
+        max_value = dailyData[i].pending
+
+      rows.push([new Date(year, month, day), dailyData[i].totalTestResults, dailyData[i].pending])
+    }
+
+    const ticks = []
+    const tick_spacing = (max_value * 1.1) / num_horizontal_ticks
+    for(var i = 0; i <= num_horizontal_ticks; i++) {
+      ticks.push(tick_spacing * i)
+    }
+
+    data.addRows(rows)
+    var options = trends_options
+    options.vAxis.ticks = ticks
+    options.colors = [color_totalTests, color_pending]
+
+    var chart = new google.visualization.LineChart(document.getElementById(elementId))
+    chart.draw(data, options)
+  }
+}
+
+/**
+ * @function createHospitalTrend
+ * @description
+ *   Create a line chart trend with 'hospitalized' and 'icu' and 'ventilator' data
+ */
+function createHospitalTrend(elementId, dailyData) {
+  google.charts.load('current', {'packages': ['line', 'corechart']})
+  google.charts.setOnLoadCallback(drawChart)
+
+  function drawChart() {
+    const data = new google.visualization.DataTable()
+    data.addColumn('date', 'Day');
+    data.addColumn('number', `Hospitalized`);
+    data.addColumn('number', `ICU`)
+    data.addColumn('number', `On Ventilator`)
+
+    const rows = []
+    var max_value = -1
+    for(var i = dailyData.length - 1; i--; i >= 0) {
+      const year = dailyData[i].date.toString().substring(0, 4)
+      const month = dailyData[i].date.toString().substring(4, 6)
+      const day = dailyData[i].date.toString().substring(6, 8)
+
+      if(dailyData[i].hospitalizedCurrently > max_value)
+        max_value = dailyData[i].hospitalizedCurrently
+      
+      if(dailyData[i].inIcuCurrently > max_value)
+        max_value = dailyData[i].inIcuCurrently
+
+      if(dailyData[i].onVentilatorCurrently > max_value)
+        max_value = dailyData[i].onVentilatorCurrently
+
+      rows.push([new Date(year, month, day), dailyData[i].hospitalizedCurrently, dailyData[i].inIcuCurrently, dailyData[i].onVentilatorCurrently])
+    }
+
+    const ticks = []
+    const tick_spacing = (max_value * 1.1) / num_horizontal_ticks
+    for(var i = 0; i <= num_horizontal_ticks; i++) {
+      ticks.push(tick_spacing * i)
+    }
+
+    data.addRows(rows)
+    var options = trends_options
+    options.vAxis.ticks = ticks
+    options.colors = [color_hospitalized, color_icu, color_ventilator]
+
+    var chart = new google.visualization.LineChart(document.getElementById(elementId))
+    chart.draw(data, options)
   }
 }
 

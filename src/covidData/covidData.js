@@ -40,6 +40,28 @@ const getCurrentStates = async () => {
 }
 
 /**
+ * @function getDailyUS
+ * @description
+ *  Get the daily numbers in the US since being recorded
+ */
+const getDailyUS = async () => {
+  const res = await superagent.get(`${api}/v1/us/daily.json`)
+  const data = JSON.parse(res.text)
+  return data
+}
+
+/**
+ * @function getDailyState
+ * @description
+ *  Get the daily numbers for a state since being recorded
+ */
+const getDailyState = async (state) => {
+  const res = await superagent.get(`${api}/v1/states/${state}/daily.json`)
+  const data = JSON.parse(res.text)
+  return data
+}
+
+/**
  * @function getUSOnDate
  * @description
  *  Get the US numbers on a certain date
@@ -99,6 +121,8 @@ module.exports = {
   getCurrentUS,
   getCurrentState,
   getCurrentStates,
+  getDailyUS,
+  getDailyState,
   getUSOnDate,
   getStateOnDate,
   getUSDates,

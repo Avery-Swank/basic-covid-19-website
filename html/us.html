@@ -7,7 +7,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript" src="us.js"></script>
+        <script type="text/javascript" src="website.js"></script>
     </head>
 
     <body onload="fillTables()">
@@ -43,10 +43,38 @@
             </table>
         </div><br>
 
-        <table class="entities_table" id="states_entities_table">
-            <tr>
-                <div class="entity" id="us_entity"></div>
-            </tr>
-        </table>
+        <div class="filters">
+            <table class="filters_chips">
+                <tr>
+                    <td>
+                        <h3 class="filters_title">Sort States By: </h3>
+                    </td>
+                    <td>
+                        <select name="sortType" class="filters_dropdown" id="filters_sort_type">
+                            <option value="alphabetical">Alphabetical</option>
+                            <option value="positive">Positive Cases</option>
+                            <option value="negative">Negative Cases</option>
+                            <option value="deaths">Deaths</option>
+                            <option value="recovered">Recovered</option>
+                            <option value="totalTests">Total Tests</option>
+                            <option value="pending">Pending</option>
+                            <option value="hospitalized">Hosiptalized</option>
+                            <option value="icu">ICU</option>
+                            <option value="onVentilator">On Ventilator</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="sortDirection" class="filters_dropdown" id="filters_sort_direction">
+                            <option value="highToLow">Highest to Lowest</option>
+                            <option value="lowToHigh">Lowest to Highest</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div><br>
+
+        <div class="entity" id="us_entity"></div><br>
+
+        <table class="entities_table" id="states_entities_table"></table>
     </body>
 </html>
