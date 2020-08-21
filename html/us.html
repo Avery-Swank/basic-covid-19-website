@@ -10,7 +10,7 @@
         <script type="text/javascript" src="website.js"></script>
     </head>
 
-    <body onload="fillTables()">
+    <body onload="fillUSPage()">
         <div class="navbar">
             <ul>
                 <li><a href="/">World</a></li>
@@ -32,12 +32,8 @@
                         <input type="checkbox" id="checkbox_text" value="text" onclick="filterData('text', this)" checked>
                     </td>
                     <td>
-                        <label for="checkbox_graph">Show Graphs </label>
-                        <input type="checkbox" id="checkbox_graph" value="graph" onclick="filterData('graph', this)">
-                    </td>
-                    <td>
                         <label for="checkbox_historical">Show Historical Trends </label>
-                        <input type="checkbox" id="checkbox_historical" value="historical" onclick="filterData('historical', this)">
+                        <input type="checkbox" id="checkbox_historical" value="historical" onclick="filterData('historical', this)" checked>
                     </td>
                 </tr>
             </table>

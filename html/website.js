@@ -10,16 +10,6 @@ const color_hospitalized = `#dedeff`
 const color_icu = `#ffffd4`
 const color_ventilator = `#fdd3d4`
 
-// Google Charts piechart options consistent across entities
-const piechart_options = {
-  width: 400,
-  height: 240,
-  pieHole: 0.7,
-  legend: `none`,
-  backgroundColor: `#222222`,
-  pieSliceText: `none`,
-}
-
 // Google Charts line chart trend options consistent across entities
 const num_horizontal_ticks = 5
 const horizontal_axis_dates = [new Date(2020, 2), new Date(2020, 5), new Date(2020, 8)]
@@ -37,11 +27,11 @@ const trends_options = {
 const stateTableId = `states_entities_table`
 
 /**
- * @function fillTables
+ * @function fillUSPage
  * @description
- *   Initial onload to fill the page with Covid Data
+ *   Initial onload to fill the 'United States' page with Covid Data
  */
-const fillTables = async () => {
+const fillUSPage = async () => {
     const usData = await $.get(`/covidData/us`)
     const usDailyData = await $.get(`/covidData/us/daily`)
 
@@ -51,12 +41,11 @@ const fillTables = async () => {
     // Create United States entity
     createEntity(`us_entity`, `United States`, usData.lastModified.substring(0, 10))
     createTexts(`us_entity`, usData)
-    createGraphs(`us_entity`, usData)
     createTrends(`us_entity`, usDailyData)
 
     // Create each indiviaul state's entity and text
-    /*const statesTable = document.getElementById(stateTableId)
-    for(var i = states.length-1; i >= 0; i--) {
+    const statesTable = document.getElementById(stateTableId)
+    for(var i = 0; i < states.length - 1; i++) {
       const stateData = states[i]
       var stateName
       var stateAbbr
@@ -70,7 +59,7 @@ const fillTables = async () => {
 
       // Create row for new entity
       const numRows = statesTable.getElementsByTagName(`tr`)
-      const row = statesTable.insertRow(numRows)
+      const row = statesTable.insertRow(i)
 
       // Create entity div to store entity
       const stateEntity = document.createElement(`div`)
@@ -82,10 +71,10 @@ const fillTables = async () => {
       createTexts(stateEntity.id, stateData)
     }
 
-    // Because it takes a lot longer to generate graphs and trends
-    // do this after generating a descent amount of information
-    for(var i = states.length-1; i >= 0; i--) {
-      const stateData = states[i]
+    // Because it takes a lot longer to generate trends
+    // Create each indiviaul state's trends after generating
+    // a descent amount of information
+    for(var i = 0; i < states.length; i++) {
       var stateName
       var stateAbbr
 
@@ -98,29 +87,23 @@ const fillTables = async () => {
 
       const stateDailyData = await $.get(`/covidData/${stateAbbr}/daily`)
 
-      createGraphs(`${stateAbbr}_entity`, stateData)
       createTrends(`${stateAbbr}_entity`, stateDailyData)
-    }*/
+    }
 }
 
 /**
  * @function filterData
  * @description
- *   Hide/Show only the selected data display types: text, graph, historical
+ *   Hide/Show only the selected data display types: text, historical
  */
 function filterData(filter, checkbox) {
   const textTables = document.getElementsByClassName(`entity_text_table`)
-  const graphTables = document.getElementsByClassName(`entity_graph_table`)
   const historicalTables = document.getElementsByClassName(`entity_trend_table`)
 
   switch(filter) {
     case 'text':
       for(const textTable of textTables)
         textTable.hidden = !checkbox.checked
-    break
-    case 'graph':
-      for(const graphTable of graphTables)
-        graphTable.hidden = !checkbox.checked
     break
     case 'historical':
       for(const historicalTable of historicalTables)
@@ -135,7 +118,6 @@ function filterData(filter, checkbox) {
  *   Create an interactive piece of covid data that includes:
  *    - title of data
  *    - a set of texts pertaining to cases, hospitalizations, deaths, etc.
- *    - a set of graphs pertaining to cases, hospitalizations, deaths, etc.
  *    - a set of historical trends pertaining to cases, hospitalizations, deaths, etc.
  *    - a standard loader
  */
@@ -154,25 +136,26 @@ const createEntity = async (entityId, title, lastUpdatedDate) => {
   textTable.id = `${entityId}_text_table`
   entity.appendChild(textTable)
 
-  // loading animation
-  const loader = document.createElement(`div`)
-  loader.className = `loader`
-  loader.id = `${entityId}_loader`
-  loader.hidden = false
-  entity.appendChild(loader)
+  // loader table
+  const loaderTable = document.createElement(`table`)
+  loaderTable.className = `entity_loader_table`
+  loaderTable.id = `${entityId}_loader_table`
+  entity.appendChild(loaderTable)
 
-  // graph table
-  const graphTable = document.createElement(`table`)
-  graphTable.className = `entity_graph_table`
-  graphTable.id = `${entityId}_graph_table`
-  graphTable.hidden = true
-  entity.appendChild(graphTable)
+  // loaders
+  const row = loaderTable.insertRow(0)
+  for(var i = 0; i < 4; i++) {
+    const loaderCell = row.insertCell(i)
+    const loader = document.createElement(`div`)
+    loader.className = `loader`
+    loader.id = `${entityId}_loader_${i}`
+    loaderCell.appendChild(loader)
+  }
 
   // historical table
   const historicalTable = document.createElement(`table`)
   historicalTable.className = `entity_trend_table`
   historicalTable.id = `${entityId}_trend_table`
-  historicalTable.hidden = true
   entity.appendChild(historicalTable)
 
   // last updated
@@ -183,7 +166,7 @@ const createEntity = async (entityId, title, lastUpdatedDate) => {
 }
 
 /**
- * @function createGraphs
+ * @function createTexts
  * @description
  *   Create a cases, mortality, testing, and hospital information as text
  */
@@ -223,36 +206,6 @@ function createTexts(entityId, data) {
 }
 
 /**
- * @function createGraphs
- * @description
- *   Create a cases, mortality, testing, and hospital information as pie charts
- */
-function createGraphs(entityId, data) {
-  const table = document.getElementById(`${entityId}_graph_table`)
-  const row = table.insertRow(0)
-
-  const casesCell = row.insertCell(0)
-  casesCell.className = `entity_graph`
-  casesCell.id = entityId + `_graph_cases`
-  createCasesGraph(casesCell.id, data)
-
-  const mortalityCell = row.insertCell(1)
-  mortalityCell.className = `entity_graph`
-  mortalityCell.id = entityId + `_graph_mortality`
-  createMortalityGraph(mortalityCell.id, data)
-
-  const testingCell = row.insertCell(2)
-  testingCell.className = `entity_graph`
-  testingCell.id = entityId + `_graph_testing`
-  createTestingGraph(testingCell.id, data)
-
-  const hospitalCell = row.insertCell(3)
-  hospitalCell.className = `entity_graph`
-  hospitalCell.id = entityId + `_graph_hospital`
-  createHospitalGraph(hospitalCell.id, data)
-}
-
-/**
  * @function createTrends
  * @description
  *   Create a cases, mortality, testing, and hospital information as a historical trend
@@ -276,108 +229,11 @@ function createTrends(entityId, data) {
   const hospitalCell = row.insertCell(3)
   hospitalCell.id = entityId + `_trend_hospital`
   createHospitalTrend(hospitalCell.id, data)
-}
 
-/**
- * @function createCasesGraph
- * @description
- *   Create a pie chart with case data: 'positive' and 'negative'
- */
-function createCasesGraph(elementId, data) {
-  google.charts.load('current', {'packages': ['corechart']})
-  google.charts.setOnLoadCallback(drawChart)
-
-  function drawChart() {
-    const chartData = google.visualization.arrayToDataTable([
-      ['Case Type', 'Number of Cases'],
-      ['Positive', data.positive],
-      ['Negative', data.negative],
-    ])
-
-    const options = piechart_options
-    options.colors = [color_positive, color_negative]
-      
-    const chart = new google.visualization.PieChart(document.getElementById(elementId))
-    chart.draw(chartData, options)
-  }
-}
-
-/**
- * @function createMortalityGraph
- * @description
- *   Create a pie chart with mortality data: 'death' and 'recovered'
- */
-function createMortalityGraph(elementId, data) {
-  google.charts.load('current', {'packages': ['corechart']})
-  google.charts.setOnLoadCallback(drawChart)
-
-  function drawChart() {
-    const chartData = google.visualization.arrayToDataTable([
-      ['Outcome Type', 'Outcome Count'],
-      ['Deaths', data.death],
-      ['Recovered', data.recovered],
-    ])
-
-    const options = piechart_options
-    options.colors = [color_death, color_recovered]
-      
-    const chart = new google.visualization.PieChart(document.getElementById(elementId))
-    chart.draw(chartData, options)
-  }
-}
-
-/**
- * @function createTestingGraph
- * @description
- *   Create a pie chart with testing data: 'death' and 'recovered'
- */
-function createTestingGraph(elementId, data) {
-  google.charts.load('current', {'packages': ['corechart']})
-  google.charts.setOnLoadCallback(drawChart)
-
-  function drawChart() {
-    const chartData = google.visualization.arrayToDataTable([
-      ['Testing Type', 'Testing Count'],
-      ['Tests Performed', data.totalTestResults],
-      ['Tests Pending', data.pending],
-    ])
-
-    const options = piechart_options
-    options.colors = [color_totalTests, color_pending]
-      
-    const chart = new google.visualization.PieChart(document.getElementById(elementId))
-    chart.draw(chartData, options)
-  }
-}
-
-/**
- * @function createHospitalGraph
- * @description
- *   Create a pie chart with hospital 'currently' data: 'hospitalizedCurrently', 'inIcuCurrently', and 'onVentilatorCurrently'
- */
-function createHospitalGraph(elementId, data) {
-  google.charts.load('current', {'packages': ['corechart']})
-  google.charts.setOnLoadCallback(drawChart)
-
-  function drawChart() {
-    const chartData = google.visualization.arrayToDataTable([
-      ['Hospital State', 'Count'],
-      ['Hospitalized', data.hospitalizedCurrently],
-      ['ICU', data.inIcuCurrently],
-      ['On Ventilator', data.onVentilatorCurrently],
-    ])
-
-    const options = piechart_options
-    options.colors = [color_hospitalized, color_icu, color_ventilator]
-
-    // Disable all loaders
-    const loaders = document.getElementsByClassName(`loader`)
-    for(const loader of loaders) {
-      loader.hidden = true
-    }
-      
-    const chart = new google.visualization.PieChart(document.getElementById(elementId))
-    chart.draw(chartData, options)
+  // Finished loading so hide entity loader
+  for(var i = 0; i < 4; i++) {
+    const loader = document.getElementById(`${entityId}_loader_${i}`)
+    loader.hidden = true
   }
 }
 
