@@ -32,11 +32,13 @@ const stateTableId = `states_entities_table`
  *   Initial onload to fill the 'United States' page with Covid Data
  */
 const fillUSPage = async () => {
-    const usData = await $.get(`/covidData/us`)
-    const usDailyData = await $.get(`/covidData/us/daily`)
+    const usData = await $.get(`/covidData/united-states/us`)
+    const usDailyData = await $.get(`/covidData/united-states/us/daily`)
 
-    const states = await $.get(`/covidData/states`)
+    const states = await $.get(`/covidData/united-states/states`)
     const statesInfo = await $.get(`/data/states`)
+
+    console.log(states)
 
     // Create United States entity
     createEntity(`us_entity`, `United States`, usData.lastModified.substring(0, 10))
@@ -85,7 +87,7 @@ const fillUSPage = async () => {
         }
       }
 
-      const stateDailyData = await $.get(`/covidData/${stateAbbr}/daily`)
+      const stateDailyData = await $.get(`/covidData/united-states/${stateAbbr}/daily`)
 
       createTrends(`${stateAbbr}_entity`, stateDailyData)
     }

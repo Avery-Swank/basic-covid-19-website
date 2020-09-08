@@ -6,11 +6,11 @@ const { getAbbreviation } = require(`./states`)
 const api = `https://api.covidtracking.com`
 
 /**
- * @function getCurrentUS
+ * @function getCurrent
  * @description
  *  Get the current numbers in the US
  */
-const getCurrentUS = async () => {
+const getCurrent = async () => {
   const res = await superagent.get(`${api}/v1/us/current.json`)
   const data = JSON.parse(res.text)
   return data
@@ -118,7 +118,7 @@ const getStateDates = async (state) => {
 }
 
 module.exports = {
-  getCurrentUS,
+  getCurrent,
   getCurrentState,
   getCurrentStates,
   getDailyUS,
