@@ -14,7 +14,7 @@ const color_ventilator = `#fdd3d4`
 const num_horizontal_ticks = 5
 const horizontal_axis_dates = [new Date(2020, 2), new Date(2020, 5), new Date(2020, 8)]
 const trends_options = {
-  width: 400,
+  width: (window.innerWidth - 50) / 4,
   height: 240,
   legend: `none`,
   backgroundColor: `#222222`,
@@ -89,27 +89,6 @@ const fillUSPage = async () => {
 
       createTrends(`${stateAbbr}_entity`, stateDailyData)
     }
-}
-
-/**
- * @function filterData
- * @description
- *   Hide/Show only the selected data display types: text, historical
- */
-function filterData(filter, checkbox) {
-  const textTables = document.getElementsByClassName(`entity_text_table`)
-  const historicalTables = document.getElementsByClassName(`entity_trend_table`)
-
-  switch(filter) {
-    case 'text':
-      for(const textTable of textTables)
-        textTable.hidden = !checkbox.checked
-    break
-    case 'historical':
-      for(const historicalTable of historicalTables)
-        historicalTable.hidden = !checkbox.checked
-    break
-  }
 }
 
 /**
@@ -271,7 +250,7 @@ function createCasesTrend(elementId, dailyData) {
     const ticks = []
     const tick_spacing = (max_value * 1.1) / num_horizontal_ticks
     for(var i = 0; i <= num_horizontal_ticks; i++) {
-      ticks.push(tick_spacing * i)
+      ticks.push(roundUp(tick_spacing * i))
     }
 
     data.addRows(rows)
@@ -318,7 +297,7 @@ function createMortalityTrend(elementId, dailyData) {
     const ticks = []
     const tick_spacing = (max_value * 1.1) / num_horizontal_ticks
     for(var i = 0; i <= num_horizontal_ticks; i++) {
-      ticks.push(tick_spacing * i)
+      ticks.push(roundUp(tick_spacing * i))
     }
 
     data.addRows(rows)
@@ -365,7 +344,7 @@ function createTestingTrend(elementId, dailyData) {
     const ticks = []
     const tick_spacing = (max_value * 1.1) / num_horizontal_ticks
     for(var i = 0; i <= num_horizontal_ticks; i++) {
-      ticks.push(tick_spacing * i)
+      ticks.push(roundUp(tick_spacing * i))
     }
 
     data.addRows(rows)
@@ -416,7 +395,7 @@ function createHospitalTrend(elementId, dailyData) {
     const ticks = []
     const tick_spacing = (max_value * 1.1) / num_horizontal_ticks
     for(var i = 0; i <= num_horizontal_ticks; i++) {
-      ticks.push(tick_spacing * i)
+      ticks.push(roundUp(tick_spacing * i))
     }
 
     data.addRows(rows)
@@ -434,7 +413,28 @@ function createHospitalTrend(elementId, dailyData) {
  * @description
  *   Fill big numbers with comma indicators
  *   https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+ * @example
+ *   1234567890 -> 1,234,567,890
  */
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+}
+
+/**
+ * @function roundUp
+ * @description
+ *   Round up numbers depending on their size:
+ *    - If number <= 1,000 then round nearest 1
+ *    - If number > 1,000 then round nearest 100
+ *    - If number > 10,000 then round nearest 1,000
+ *    - If number > 100,000 then round nearest 10,000
+ *    - If number > 1,000,000 then round nearest 100,000
+ */
+function roundUp(x) {
+
+  if(x > 1000000) return Math.ceil(x/100000) * 100000
+  if(x > 100000) return Math.ceil(x/10000) * 10000
+  if(x > 10000) return Math.ceil(x/1000) * 1000
+  if(x > 1000) return Math.ceil(x/100) * 100
+  if(x <= 1000) return Math.ceil(x)
 }

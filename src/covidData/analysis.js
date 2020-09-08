@@ -27,6 +27,11 @@ const getStateDifference = async (beforeDate, afterDate) => {
   return await getDifference(beforeData, afterData)
 }
 
+/**
+ * @function getDifference
+ * @description
+ *  Calculate a basic displacement for (after - before) for all numerical object keys
+ */
 const getDifference = async (beforeData, afterData) => {
   const diffData = {
     date: `${beforeData.date} -> ${afterData.date}`,

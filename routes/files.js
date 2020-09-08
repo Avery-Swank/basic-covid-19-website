@@ -27,4 +27,8 @@ router.get('/states.json', function(req, res) {
   res.sendFile(path.join(__dirname, '../src', '/covidData', 'states.json'))
 })
 
+router.get('/countries.json', function(req, res) {
+  res.sendFile(path.join(__dirname, '../src', '/covidData', 'countries.json'))
+})
+
 module.exports = router

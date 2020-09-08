@@ -21,54 +21,6 @@
 
         <h1 class="title">COVID-19: United States</h1>
 
-        <div class="filters">
-            <table class="filters_chips">
-                <tr>
-                    <td>
-                        <h3 class="filters_title">Filters: </h3>
-                    </td>
-                    <td>
-                        <label for="checkbox_text">Show Text </label>
-                        <input type="checkbox" id="checkbox_text" value="text" onclick="filterData('text', this)" checked>
-                    </td>
-                    <td>
-                        <label for="checkbox_historical">Show Historical Trends </label>
-                        <input type="checkbox" id="checkbox_historical" value="historical" onclick="filterData('historical', this)" checked>
-                    </td>
-                </tr>
-            </table>
-        </div><br>
-
-        <div class="filters">
-            <table class="filters_chips">
-                <tr>
-                    <td>
-                        <h3 class="filters_title">Sort States By: </h3>
-                    </td>
-                    <td>
-                        <select name="sortType" class="filters_dropdown" id="filters_sort_type">
-                            <option value="alphabetical">Alphabetical</option>
-                            <option value="positive">Positive Cases</option>
-                            <option value="negative">Negative Cases</option>
-                            <option value="deaths">Deaths</option>
-                            <option value="recovered">Recovered</option>
-                            <option value="totalTests">Total Tests</option>
-                            <option value="pending">Pending</option>
-                            <option value="hospitalized">Hosiptalized</option>
-                            <option value="icu">ICU</option>
-                            <option value="onVentilator">On Ventilator</option>
-                        </select>
-                    </td>
-                    <td>
-                        <select name="sortDirection" class="filters_dropdown" id="filters_sort_direction">
-                            <option value="highToLow">Highest to Lowest</option>
-                            <option value="lowToHigh">Lowest to Highest</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-        </div><br>
-
         <div class="entity" id="us_entity"></div><br>
 
         <table class="entities_table" id="states_entities_table"></table>
