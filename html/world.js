@@ -1,20 +1,14 @@
 
 // Google Charts graph colors for consistency
-const color_positive = `#e60000`
-const color_negative = `#00fe00`
+const color_confirmed = `#e60000`
+const color_recovered = `#00fe00`
 const color_death = `#000000`
-const color_recovered = `#00ff00`
-const color_totalTests = `#33ccff`
-const color_pending = `#ffff99`
-const color_hospitalized = `#dedeff`
-const color_icu = `#ffffd4`
-const color_ventilator = `#fdd3d4`
 
 // Google Charts line chart trend options consistent across entities
 const num_horizontal_ticks = 5
 const horizontal_axis_dates = [new Date(2020, 2), new Date(2020, 5), new Date(2020, 8)]
 const trends_options = {
-  width: (window.innerWidth - 50) / 4,
+  width: (window.innerWidth - 50) * .60,
   height: 240,
   legend: `none`,
   backgroundColor: `#222222`,
@@ -24,7 +18,7 @@ const trends_options = {
   vAxis: {}
 }
 
-const stateTableId = `states_entities_table`
+const countiresTableId = `countries_entities_table`
 
 /**
  * @function fillWorldPage
@@ -32,16 +26,165 @@ const stateTableId = `states_entities_table`
  *   Initial onload to fill the 'World' page with Covid Data
  */
 const fillWorldPage = async () => {
-  console.log(`Fill World Page`)
-
   const worldData = await $.get(`/covidData/world/current`)
-  console.log(`World: ${JSON.stringify(worldData)}`)
-
   const summary = await $.get(`/covidData/world/summary`)
-  console.log(`Summary: ${JSON.stringify(summary)}`)
 
-  const countries = await $.get(`/data/countries`)
-  const countriesList = countries.data
+  createEntity(`world_entity`, `World`, null)
+  createText(`World_data_table_text_cell`, worldData)
+
+  // Load entity and text for countries first
+  const countriesTable = document.getElementById(countiresTableId)
+  for(var i = 0; i < summary.length; i++) {
+    const country = summary[i]
+
+    // Create row for new entity
+    const row = countriesTable.insertRow(i)
+
+    // Create entity div to store entity
+    const countryEntity = document.createElement(`div`)
+    countryEntity.className = `entity`
+    countryEntity.id = country.Slug + `_entity`
+    row.appendChild(countryEntity)
+
+    createEntity(country.Slug + `_entity`, country.Country)
+    createText(`${country.Country}_data_table_text_cell`, country)
+  }
+
+  // Now load trends with a loading indicator
+  for(var i = 0; i < summary.length; i++) {
+    const country = summary[i]
+    const entity = document.getElementById(country.Slug + `_entity`)
+
+    // loader
+    const loader = document.createElement(`div`)
+    loader.className = `loader`
+    loader.id = `${country.Slug}_entity_loader`
+    entity.appendChild(loader)
+
+    // Crate div to store trend
+    const trendDiv = document.createElement(`div`)
+    trendDiv.id = `${country.Slug}_entity_trend_country`
+    trendDiv.className = `entity_country_trend`
+    entity.appendChild(trendDiv)
+
+    const countryDailyData = await $.get(`/covidData/world/country/${country.Slug}`)
+    createTrend(`${country.Country}_data_table_trend_cell`, countryDailyData)
+
+    // Hide loader indicator
+    loader.hidden = true
+
+    // Add last updated date
+    const lastUpdated = document.createElement(`span`)
+    lastUpdated.className = `entity_last_updated`
+    lastUpdated.innerHTML = `Last Updated: ${country.Date.substring(0, 10)}`
+    entity.appendChild(lastUpdated)
+  }
+}
+
+/**
+ * @function createEntity
+ * @description
+ *   Create an interactive piece of covid data that includes:
+ *    - title of data
+ *    - Data table to store text and trend
+ */
+const createEntity = async (entityId, title, lastUpdatedDate) => {
+  const entity = document.getElementById(entityId)
+
+  // title
+  const entityTitle = document.createElement(`span`)
+  entityTitle.className = `entity_title`
+  entityTitle.innerHTML = title
+  entity.appendChild(entityTitle)
+
+  // data table
+  const entityTable = document.createElement(`table`)
+  entityTable.className = `entity_title`
+  entityTable.id = `${title}_data_table`
+
+  const tableRow = entityTable.insertRow(0)
+  tableRow.id = `${title}_data_table_row`
+
+  const textCell = tableRow.insertCell(0)
+  textCell.className = `data_table_text_cell`
+  textCell.id = `${title}_data_table_text_cell`
+
+  if(title !== `World`) {
+    const trendCell = tableRow.insertCell(1)
+    trendCell.className = `data_table_trend_cell`
+    trendCell.id = `${title}_data_table_trend_cell`
+  }
+
+  entity.appendChild(entityTable)
+}
+
+/**
+ * @function createText
+ * @description
+ *   Create a cases, mortality, testing, and hospital information as text
+ */
+function createText(cellId, data) {
+  const textCell = document.getElementById(cellId)
+
+  textCell.innerHTML = `
+    <ul class="entity_text_list">
+      <li style="color: ${color_confirmed};">Confirmed: ${data.TotalConfirmed ? numberWithCommas(data.TotalConfirmed) : 0}</li>
+      <li style="color: ${color_death};">Deaths: ${data.TotalDeaths ? numberWithCommas(data.TotalDeaths) : 0}</li>
+      <li style="color: ${color_recovered};">Recovered: ${data.TotalRecovered ? numberWithCommas(data.TotalRecovered) : 0}</li>
+    </ul>`
+}
+
+/**
+ * @function createTrend
+ * @description
+ *   Create a confirmed, deaths, and recovered information as text
+ */
+function createTrend(cellId, dailyData) {
+  google.charts.load('current', {'packages': ['line', 'corechart']})
+  google.charts.setOnLoadCallback(drawChart)
+
+  function drawChart() {
+    const data = new google.visualization.DataTable()
+    data.addColumn('date', 'Day')
+    data.addColumn('number', `Confirmed`)
+    data.addColumn('number', `Deaths`)
+    data.addColumn('number', `Recovered`)
+
+    console.log(dailyData)
+
+    const rows = []
+    var max_value = -1
+    for(var i = dailyData.length - 1; i--; i >= 0) {
+      const year = dailyData[i].Date.toString().substring(0, 4)
+      const month = dailyData[i].Date.toString().substring(5, 7)
+      const day = dailyData[i].Date.toString().substring(8, 10)
+
+      if(dailyData[i].Confirmed > max_value)
+        max_value = dailyData[i].Confirmed
+
+      if(dailyData[i].Deaths > max_value)
+        max_value = dailyData[i].Deaths
+      
+      if(dailyData[i].Recovered > max_value)
+        max_value = dailyData[i].Recovered
+
+      rows.push([new Date(year, month, day), dailyData[i].Confirmed, dailyData[i].Deaths, dailyData[i].Recovered])
+    }
+
+    const ticks = []
+    const tick_spacing = (max_value * 1.1) / num_horizontal_ticks
+    for(var i = 0; i <= num_horizontal_ticks; i++) {
+      ticks.push(roundUp(tick_spacing * i))
+    }
+
+    data.addRows(rows)
+    var options = trends_options
+    options.vAxis.ticks = ticks
+    options.colors = [color_confirmed, color_death, color_recovered]
+
+    var chart = new google.visualization.LineChart(document.getElementById(cellId))
+    chart.draw(data, options)
+  }
 }
 
 /**

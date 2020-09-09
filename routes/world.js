@@ -26,7 +26,7 @@ router.get(`/summary`, async function(req, res) {
   }
 })
 
-router.get(`/country/history/:country`, async function(req, res) {
+router.get(`/country/:country`, async function(req, res) {
   console.log(`covidData/world: Get Country ${req.params.country} History...`)
   
   try{

@@ -63,6 +63,7 @@ html {
   background-color: #222222;
   padding: auto;
   width: 100%;
+  margin:0;
 }
 
 .entity table  {
@@ -85,11 +86,8 @@ html {
   margin-bottom: 0px;
 }
 
-.entity_text_table li {
-  font-size: 36px;
-}
-
 .entity_text_list {
+  font-size: 36px;
   list-style: none;
   text-align: center;
   padding: 0;
@@ -105,6 +103,14 @@ html {
 
 .entities_table  {
   width: 100%;
+}
+
+.data_table_text_cell {
+  width: 30%;
+}
+
+.data_table_trend_cell {
+  width: 70%;
 }
 
 /* loader style */

@@ -38,8 +38,6 @@ const fillUSPage = async () => {
     const states = await $.get(`/covidData/united-states/states`)
     const statesInfo = await $.get(`/data/states`)
 
-    console.log(states)
-
     // Create United States entity
     createEntity(`us_entity`, `United States`, usData.lastModified.substring(0, 10))
     createTexts(`us_entity`, usData)
@@ -229,8 +227,8 @@ function createCasesTrend(elementId, dailyData) {
 
   function drawChart() {
     const data = new google.visualization.DataTable()
-    data.addColumn('date', 'Day');
-    data.addColumn('number', `Positive`);
+    data.addColumn('date', 'Day')
+    data.addColumn('number', `Positive`)
     data.addColumn('number', `Negative`)
 
     const rows = []
