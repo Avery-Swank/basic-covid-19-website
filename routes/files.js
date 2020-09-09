@@ -11,10 +11,6 @@ router.get('/us', function(req, res) {
   res.sendFile(path.join(__dirname, '../html', 'us.html'))
 })
 
-router.get('/about', function(req, res) {
-  res.sendFile(path.join(__dirname, '../html', 'about.html'))
-})
-
 router.get('/style', function(req, res) {
   res.sendFile(path.join(__dirname, '../html', 'website.css'))
 })
