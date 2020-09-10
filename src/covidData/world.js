@@ -1,6 +1,6 @@
 
 const superagent = require(`superagent`)
-const moment = require(`moment`)
+const sleep = require(`sleep-promise`)
 
 const api = `https://api.covid19api.com`
 
@@ -32,7 +32,8 @@ const getSummary = async () => {
  *  Get the current historical numbers in a country
  */
 const getCountryHistory = async (country) => {
-  const res = await superagent.get(`${api}/country/${country}`)
+  await sleep(50)
+  const res = await superagent.get(`${api}/total/country/${country}`)
   const data = JSON.parse(res.text)
   return data
 }

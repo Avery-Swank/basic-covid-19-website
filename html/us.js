@@ -2,7 +2,7 @@
 // Google Charts graph colors for consistency
 const color_positive = `#e60000`
 const color_negative = `#00fe00`
-const color_death = `#000000`
+const color_death = `#d6d6d6`
 const color_recovered = `#00ff00`
 const color_totalTests = `#33ccff`
 const color_pending = `#ffff99`
@@ -12,14 +12,13 @@ const color_ventilator = `#fdd3d4`
 
 // Google Charts line chart trend options consistent across entities
 const num_horizontal_ticks = 5
-const horizontal_axis_dates = [new Date(2020, 2), new Date(2020, 5), new Date(2020, 8)]
 const trends_options = {
   width: (window.innerWidth - 50) / 4,
   height: 240,
   legend: `none`,
   backgroundColor: `#222222`,
   hAxis: {
-    ticks: horizontal_axis_dates
+    format: `MMM d`,
   },
   vAxis: {}
 }
@@ -235,7 +234,7 @@ function createCasesTrend(elementId, dailyData) {
     var max_value = -1
     for(var i = dailyData.length - 1; i--; i >= 0) {
       const year = dailyData[i].date.toString().substring(0, 4)
-      const month = dailyData[i].date.toString().substring(4, 6)
+      const month = dailyData[i].date.toString().substring(4, 6) - 1
       const day = dailyData[i].date.toString().substring(6, 8)
 
       if(dailyData[i].positive > max_value)
@@ -250,7 +249,7 @@ function createCasesTrend(elementId, dailyData) {
     const ticks = []
     const tick_spacing = (max_value * 1.1) / num_horizontal_ticks
     for(var i = 0; i <= num_horizontal_ticks; i++) {
-      ticks.push(roundUp(tick_spacing * i))
+      ticks.push(roundDown(tick_spacing * i))
     }
 
     data.addRows(rows)
@@ -282,7 +281,7 @@ function createMortalityTrend(elementId, dailyData) {
     var max_value = -1
     for(var i = dailyData.length - 1; i--; i >= 0) {
       const year = dailyData[i].date.toString().substring(0, 4)
-      const month = dailyData[i].date.toString().substring(4, 6)
+      const month = dailyData[i].date.toString().substring(4, 6) - 1
       const day = dailyData[i].date.toString().substring(6, 8)
 
       if(dailyData[i].death > max_value)
@@ -297,7 +296,7 @@ function createMortalityTrend(elementId, dailyData) {
     const ticks = []
     const tick_spacing = (max_value * 1.1) / num_horizontal_ticks
     for(var i = 0; i <= num_horizontal_ticks; i++) {
-      ticks.push(roundUp(tick_spacing * i))
+      ticks.push(roundDown(tick_spacing * i))
     }
 
     data.addRows(rows)
@@ -329,7 +328,7 @@ function createTestingTrend(elementId, dailyData) {
     var max_value = -1
     for(var i = dailyData.length - 1; i--; i >= 0) {
       const year = dailyData[i].date.toString().substring(0, 4)
-      const month = dailyData[i].date.toString().substring(4, 6)
+      const month = dailyData[i].date.toString().substring(4, 6) - 1
       const day = dailyData[i].date.toString().substring(6, 8)
 
       if(dailyData[i].totalTestResults > max_value)
@@ -344,7 +343,7 @@ function createTestingTrend(elementId, dailyData) {
     const ticks = []
     const tick_spacing = (max_value * 1.1) / num_horizontal_ticks
     for(var i = 0; i <= num_horizontal_ticks; i++) {
-      ticks.push(roundUp(tick_spacing * i))
+      ticks.push(roundDown(tick_spacing * i))
     }
 
     data.addRows(rows)
@@ -377,7 +376,7 @@ function createHospitalTrend(elementId, dailyData) {
     var max_value = -1
     for(var i = dailyData.length - 1; i--; i >= 0) {
       const year = dailyData[i].date.toString().substring(0, 4)
-      const month = dailyData[i].date.toString().substring(4, 6)
+      const month = dailyData[i].date.toString().substring(4, 6) - 1
       const day = dailyData[i].date.toString().substring(6, 8)
 
       if(dailyData[i].hospitalizedCurrently > max_value)
@@ -395,7 +394,7 @@ function createHospitalTrend(elementId, dailyData) {
     const ticks = []
     const tick_spacing = (max_value * 1.1) / num_horizontal_ticks
     for(var i = 0; i <= num_horizontal_ticks; i++) {
-      ticks.push(roundUp(tick_spacing * i))
+      ticks.push(roundDown(tick_spacing * i))
     }
 
     data.addRows(rows)
@@ -421,7 +420,7 @@ function numberWithCommas(x) {
 }
 
 /**
- * @function roundUp
+ * @function roundDown
  * @description
  *   Round up numbers depending on their size:
  *    - If number <= 1,000 then round nearest 1
@@ -430,11 +429,11 @@ function numberWithCommas(x) {
  *    - If number > 100,000 then round nearest 10,000
  *    - If number > 1,000,000 then round nearest 100,000
  */
-function roundUp(x) {
+function roundDown(x) {
 
-  if(x > 1000000) return Math.ceil(x/100000) * 100000
-  if(x > 100000) return Math.ceil(x/10000) * 10000
-  if(x > 10000) return Math.ceil(x/1000) * 1000
-  if(x > 1000) return Math.ceil(x/100) * 100
-  if(x <= 1000) return Math.ceil(x)
+  if(x > 1000000) return Math.floor(x/100000) * 100000
+  if(x > 100000) return Math.floor(x/10000) * 10000
+  if(x > 10000) return Math.floor(x/1000) * 1000
+  if(x > 1000) return Math.floor(x/100) * 100
+  if(x <= 1000) return Math.floor(x)
 }

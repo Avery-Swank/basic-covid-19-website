@@ -2,18 +2,17 @@
 // Google Charts graph colors for consistency
 const color_confirmed = `#e60000`
 const color_recovered = `#00fe00`
-const color_death = `#000000`
+const color_death = `#d6d6d6`
 
 // Google Charts line chart trend options consistent across entities
 const num_horizontal_ticks = 5
-const horizontal_axis_dates = [new Date(2020, 2), new Date(2020, 5), new Date(2020, 8)]
 const trends_options = {
   width: (window.innerWidth - 50) * .60,
   height: 240,
   legend: `none`,
   backgroundColor: `#222222`,
   hAxis: {
-    ticks: horizontal_axis_dates
+    format: `MMM d`,
   },
   vAxis: {}
 }
@@ -55,12 +54,6 @@ const fillWorldPage = async () => {
     const country = summary[i]
     const entity = document.getElementById(country.Slug + `_entity`)
 
-    // loader
-    const loader = document.createElement(`div`)
-    loader.className = `loader`
-    loader.id = `${country.Slug}_entity_loader`
-    entity.appendChild(loader)
-
     // Crate div to store trend
     const trendDiv = document.createElement(`div`)
     trendDiv.id = `${country.Slug}_entity_trend_country`
@@ -70,8 +63,7 @@ const fillWorldPage = async () => {
     const countryDailyData = await $.get(`/covidData/world/country/${country.Slug}`)
     createTrend(`${country.Country}_data_table_trend_cell`, countryDailyData)
 
-    // Hide loader indicator
-    loader.hidden = true
+    // Trend overlaps loader so it is destroyed
 
     // Add last updated date
     const lastUpdated = document.createElement(`span`)
@@ -105,14 +97,22 @@ const createEntity = async (entityId, title, lastUpdatedDate) => {
   const tableRow = entityTable.insertRow(0)
   tableRow.id = `${title}_data_table_row`
 
+  // Text Cell
   const textCell = tableRow.insertCell(0)
   textCell.className = `data_table_text_cell`
   textCell.id = `${title}_data_table_text_cell`
 
+  // Trend Cell
   if(title !== `World`) {
     const trendCell = tableRow.insertCell(1)
     trendCell.className = `data_table_trend_cell`
     trendCell.id = `${title}_data_table_trend_cell`
+
+    // loader
+    const loader = document.createElement(`div`)
+    loader.className = `loader`
+    loader.id = `${title}_entity_loader`
+    trendCell.appendChild(loader)
   }
 
   entity.appendChild(entityTable)
@@ -150,13 +150,11 @@ function createTrend(cellId, dailyData) {
     data.addColumn('number', `Deaths`)
     data.addColumn('number', `Recovered`)
 
-    console.log(dailyData)
-
     const rows = []
     var max_value = -1
     for(var i = dailyData.length - 1; i--; i >= 0) {
       const year = dailyData[i].Date.toString().substring(0, 4)
-      const month = dailyData[i].Date.toString().substring(5, 7)
+      const month = dailyData[i].Date.toString().substring(5, 7) - 1
       const day = dailyData[i].Date.toString().substring(8, 10)
 
       if(dailyData[i].Confirmed > max_value)
