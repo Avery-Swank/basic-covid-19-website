@@ -1,5 +1,6 @@
 
 const superagent = require(`superagent`)
+const moment = require(`moment`)
 const sleep = require(`sleep-promise`)
 
 const api = `https://api.covid19api.com`
@@ -33,13 +34,33 @@ const getSummary = async () => {
  */
 const getCountryHistory = async (country) => {
   await sleep(50)
+
   const res = await superagent.get(`${api}/total/country/${country}`)
   const data = JSON.parse(res.text)
   return data
 }
 
+/**
+ * @function getCountryHistorySince
+ * @description
+ *  Get the current historical numbers in a country since a certain date
+ *  Same as 'getCuontryHistory' but slices off whatever comes before 'since'
+ *  'since' is of format: YYYY-MM-DD
+ */
+const getCountryHistorySince = async (country, since) => {
+  await sleep(50)
+
+  const today = moment()
+  const numDays = today.diff(since, `days`)
+
+  const res = await superagent.get(`${api}/total/country/${country}`)
+  const data = JSON.parse(res.text)
+  return data.slice(data.length - numDays, data.length)
+}
+
 module.exports = {
   getCurrent,
   getSummary,
-  getCountryHistory
+  getCountryHistory,
+  getCountryHistorySince
 }

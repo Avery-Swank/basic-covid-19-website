@@ -1,4 +1,7 @@
 
+// Starting Date for world data
+const startDate = `2020-03-01`
+
 // Google Charts graph colors for consistency
 const color_confirmed = `#e60000`
 const color_recovered = `#00fe00`
@@ -60,7 +63,7 @@ const fillWorldPage = async () => {
     trendDiv.className = `entity_country_trend`
     entity.appendChild(trendDiv)
 
-    const countryDailyData = await $.get(`/covidData/world/country/${country.Slug}`)
+    const countryDailyData = await $.get(`/covidData/world/country/${country.Slug}/${startDate}`)
     createTrend(`${country.Country}_data_table_trend_cell`, countryDailyData)
 
     // Trend overlaps loader so it is destroyed
