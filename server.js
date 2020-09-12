@@ -13,6 +13,6 @@ app.use(`/data`, dataRoutes)
 app.use(`/covidData/world`, worldRoutes)
 app.use(`/covidData/united-states`, unitedStatesRoutes)
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`Listening on port: ${port}`)
 })
