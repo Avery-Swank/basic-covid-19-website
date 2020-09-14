@@ -18,3 +18,6 @@ All of the graphs and maps are built using [Google Charts](https://developers.go
 
 ## design
 The design of this website was heavily inspired from the [Johns Hopkins University COVID-19 Dashboard](https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6)
+
+## live website
+This project is currently deployed on Heroku at https://covid19site.herokuapp.com.
