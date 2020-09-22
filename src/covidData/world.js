@@ -33,7 +33,7 @@ const getSummary = async () => {
  *  Get the current historical numbers in a country
  */
 const getCountryHistory = async (country) => {
-  await sleep(50)
+  await sleep(200)
 
   const res = await superagent.get(`${api}/total/country/${country}`)
   const data = JSON.parse(res.text)
