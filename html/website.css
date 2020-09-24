@@ -11,6 +11,17 @@ html {
   text-align: center;
 }
 
+.description {
+  margin: auto;
+  color: #d6d6d6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.description a { color: rgb(75, 75, 255); }
+.description a:hover { color: rgb(172, 172, 255); }
+
 /* navbar style */
 .navbar ul {
   list-style-type: none;

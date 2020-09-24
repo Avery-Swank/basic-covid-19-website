@@ -33,7 +33,7 @@ const getSummary = async () => {
  *  Get the current historical numbers in a country
  */
 const getCountryHistory = async (country) => {
-  await sleep(200)
+  await sleep(100)
 
   const res = await superagent.get(`${api}/total/country/${country}`)
   const data = JSON.parse(res.text)
@@ -48,7 +48,7 @@ const getCountryHistory = async (country) => {
  *  'since' is of format: YYYY-MM-DD
  */
 const getCountryHistorySince = async (country, since) => {
-  await sleep(50)
+  await sleep(100)
 
   const today = moment()
   const numDays = today.diff(since, `days`)
